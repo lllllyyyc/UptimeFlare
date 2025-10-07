@@ -2,13 +2,12 @@ import { MaintenanceConfig, PageConfig, WorkerConfig } from './types/config'
 
 const pageConfig: PageConfig = {
   // Title for your status page
-  title: "lllllyccc's Status Page",
+  title: "lyc8503's Status Page",
   // Links shown at the header of your status page, could set `highlight` to `true`
   links: [
-    { link: 'https://github.com/lllllyccc', label: 'GitHub' },
-    { link: 'https://lllllyccc.qzz.io', label: 'Personal Web' },
-    { link:'https://lllllyccc.dpdns.org',label:'Proxy'},
-    { link: 'mailto:feedback@lllllyccc.qzz.io', label: 'Email Me', highlight: true },
+    { link: 'https://github.com/lyc8503', label: 'GitHub' },
+    { link: 'https://blog.lyc8503.net/', label: 'Blog' },
+    { link: 'mailto:me@lyc8503.net', label: 'Email Me', highlight: true },
   ],
   // [OPTIONAL] Group your monitors
   // If not specified, all monitors will be shown in a single list
@@ -16,14 +15,6 @@ const pageConfig: PageConfig = {
   group: {
     '🌐 Public (example group name)': ['foo_monitor', 'bar_monitor', 'more monitor ids...'],
     '🔐 Private': ['test_tcp_monitor'],
-  },
-  // [OPTIONAL] Set the path to your favicon, default to '/favicon.ico' if not specified
-  favicon: '/favicon.ico',
-  // [OPTIONAL] Maintenance related settings
-  maintenances: {
-    // [OPTIONAL] The color of upcoming maintenance alerts, default to 'gray'
-    // Active alerts will always use the color specified in the MaintenanceConfig
-    upcomingColor: 'gray',
   },
 }
 
@@ -34,7 +25,6 @@ const workerConfig: WorkerConfig = {
   // passwordProtection: 'username:password',
   // Define all your monitors here
   monitors: [
-    
     // Example HTTP Monitor
     {
       // `id` should be unique, history will be kept if the `id` remains constant
@@ -112,7 +102,7 @@ const workerConfig: WorkerConfig = {
       reason: string
     ) => {
       // This callback will be called when there's a status change for any monitor
-      // Write any TypeScript code here
+      // Write any Typescript code here
       // This will not follow the grace period settings and will be called immediately when the status changes
       // You need to handle the grace period manually if you want to implement it
     },
@@ -124,7 +114,7 @@ const workerConfig: WorkerConfig = {
       reason: string
     ) => {
       // This callback will be called EVERY 1 MINTUE if there's an on-going incident for any monitor
-      // Write any TypeScript code here
+      // Write any Typescript code here
     },
   },
 }
@@ -133,7 +123,7 @@ const workerConfig: WorkerConfig = {
 // During maintenance, an alert will be shown at status page
 // Also, related downtime notifications will be skipped (if any)
 // Of course, you can leave it empty if you don't need this feature
- //const maintenances: MaintenanceConfig[] = []
+// const maintenances: MaintenanceConfig[] = []
 const maintenances: MaintenanceConfig[] = [
   {
     // [Optional] Monitor IDs to be affected by this maintenance
@@ -150,31 +140,6 @@ const maintenances: MaintenanceConfig[] = [
     // [Optional] color of the maintenance alert at status page, default to "yellow"
     color: 'blue',
   },
-  // As this config file is a TypeScript file, you can even use IIFE to generate scheduled maintenances
-  // The following example shows a scheduled maintenance from 2 AM to 4 AM on the 15th of every month (UTC+8)
-  // This COULD BE DANGEROUS, as generating too many maintenance entries can lead to performance problems
-  // Undeterministic outputs may also lead to bugs or unexpected behavior
-  // If you don't know how to DEBUG, use this approach WITH CAUTION
-  ...(function (){
-    const schedules = [];
-    const today = new Date();
-
-    for (let i = -1; i <= 1; i++) {
-      // JavaScript's Date object will automatically handle year rollovers
-      const date = new Date(today.getFullYear(), today.getMonth() + i, 15); 
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-
-      schedules.push({
-        title: `${year}/${parseInt(month)} - Test scheduled maintenance`,
-        monitors: ['foo_monitor'],
-        body: 'Monthly scheduled maintenance',
-        start: `${year}-${month}-15T02:00:00.000+08:00`,
-        end: `${year}-${month}-15T04:00:00.000+08:00`,
-      });
-    }
-    return schedules;
-  })()
 ]
 
 // Don't forget this, otherwise compilation fails.
