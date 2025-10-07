@@ -2,12 +2,13 @@ import { MaintenanceConfig, PageConfig, WorkerConfig } from './types/config'
 
 const pageConfig: PageConfig = {
   // Title for your status page
-  title: "lyc8503's Status Page",
+  title: "lllllyccc's Status Page",
   // Links shown at the header of your status page, could set `highlight` to `true`
   links: [
-    { link: 'https://github.com/lyc8503', label: 'GitHub' },
-    { link: 'https://blog.lyc8503.net/', label: 'Blog' },
-    { link: 'mailto:me@lyc8503.net', label: 'Email Me', highlight: true },
+    { link: 'https://github.com/lllllyccc', label: 'GitHub' },
+    { link: 'https://lllllyccc.qzz.io', label: 'Personal Web' },
+    { link:'https://lllllyccc.dpdns.org',label:'Proxy'},
+    { link: 'mailto:feedback@lllllyccc.qzz.io', label: 'Email Me', highlight: true },
   ],
   // [OPTIONAL] Group your monitors
   // If not specified, all monitors will be shown in a single list
@@ -33,6 +34,7 @@ const workerConfig: WorkerConfig = {
   // passwordProtection: 'username:password',
   // Define all your monitors here
   monitors: [
+    
     // Example HTTP Monitor
     {
       // `id` should be unique, history will be kept if the `id` remains constant
@@ -131,7 +133,7 @@ const workerConfig: WorkerConfig = {
 // During maintenance, an alert will be shown at status page
 // Also, related downtime notifications will be skipped (if any)
 // Of course, you can leave it empty if you don't need this feature
-// const maintenances: MaintenanceConfig[] = []
+ //const maintenances: MaintenanceConfig[] = []
 const maintenances: MaintenanceConfig[] = [
   {
     // [Optional] Monitor IDs to be affected by this maintenance
